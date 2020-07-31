@@ -1,29 +1,64 @@
+// 此页面配置相关路由的信息
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
 
+// 安装插件
 Vue.use(VueRouter)
 
-  const routes = [
-  {
-    path: '/',
-    name: 'Home',
-    component: Home
+const routes = [{
+    path: '',
+    redirect: '/home'
   },
   {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+    path: '/home',
+    name: 'home',
+    meta: {
+      title: '首页'
+    },
+    component: () => import('../views/home/home.vue'),
+    children: [],
+    beforeEach: (to, form, next) => {
+      // document.title = to.matched[0].meta.title
+      // next()//必须执行，否则不知道下一步需要干什么
+    }
+  },
+  {
+    path: '/class',
+    name: 'class',
+    meta: {
+      title: '分类'
+    },
+    component: () => import( /* webpackChunkName: "about" */ '../views/class/class.vue')
+  },
+  {
+    path: '/shopCar',
+    name: 'shopCar',
+    meta: {
+      title: '购物车'
+    },
+    component: () => import( /* webpackChunkName: "about" */ '../views/shopCar/shopCar.vue')
+  },
+  {
+    path: '/my',
+    name: 'my',
+    meta: {
+      title: '个人中心'
+    },
+    component: () => import( /* webpackChunkName: "about" */ '../views/myPersonal/person.vue')
   }
 ]
 
+// 创建VueRoouter对象
 const router = new VueRouter({
-  mode: 'history',
+  mode: 'history', //修改为h5得history模式，不设置就会使hash /#/
   base: process.env.BASE_URL,
-  routes
+  routes,
+  linkActiveClass: 'active' //修改理由的激活类名
 })
 
+// 前置钩子  /（守卫）
+router.beforeEach((to, form, next) => {
+  document.title = to.matched[0].meta.title
+  next() //必须执行，否则不知道下一步需要干什么
+})
 export default router

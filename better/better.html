@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .container {
+      height: 150px;
+      overflow: hidden;
+      background-color: cyan;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <div class="container">
+      <ul class='content'>
+        <li>lllllllll1</li>
+        <li>lllllllll2</li>
+        <li>lllllllll3</li>
+        <li>lllllllll4</li>
+        <li>lllllllll5</li>
+        <li>lllllllll6</li>
+        <li>lllllllll7</li>
+        <li>lllllllll8</li>
+        <li>lllllllll9</li>
+        <li>lllllllll10</li>
+        <li>lllllllll11</li>
+        <li>lllllllll12</li>
+        <li>lllllllll13</li>
+        <li>lllllllll14</li>
+        <li>lllllllll15</li>
+        <li>lllllllll16</li>
+        <li>lllllllll17</li>
+        <li>lllllllll18</li>
+        <li>lllllllll19</li>
+        <li>lllllllll20</li>
+        <li>lllllllll21</li>
+        <li>lllllllll22</li>
+        <li>lllllllll23</li>
+        <li>lllllllll24</li>
+        <li>lllllllll25</li>
+        <li>lllllllll26</li>
+        <li>lllllllll27</li>
+        <li>lllllllll28</li>
+        <li>lllllllll29</li>
+        <li>lllllllll30</li>
+        <li>lllllllll31</li>
+        <li>lllllllll32</li>
+        <li>lllllllll33</li>
+        <li>lllllllll34</li>
+        <li>lllllllll35</li>
+        <li>lllllllll36</li>
+        <li>lllllllll37</li>
+        <li>lllllllll38</li>
+        <li>lllllllll39</li>
+        <li>lllllllll40</li>
+        <li>lllllllll41</li>
+        <li>lllllllll42</li>
+        <li>lllllllll43</li>
+        <li>lllllllll44</li>
+        <li>lllllllll45</li>
+        <li>lllllllll46</li>
+        <li>lllllllll47</li>
+        <li>lllllllll48</li>
+        <li>lllllllll49</li>
+        <li>lllllllll50</li>
+      </ul>
+    </div>
+  </div>
+  <script src="./bscroll.js"></script>
+  <script>
+    var con = document.querySelector('.container')
+    const bscroll = new BScroll(con, {
+      //0,1都是不能侦测，0为默认值
+      //2 在手指滚动的过程中侦测，手指离开后的惯性滚动过程中不侦测
+      //3，只要是滚动，都侦测
+      probeType: 2,
+      //click 默认值是false，不监听原生事件，比如button在这范围里，button点击u监听，需要改为true
+      click: true,
+      // probeType: 监听上拉
+      pullUpLoad: true
+    })
+    bscroll.on('scroll', position => {
+    //   console.log(11111)
+    })
+    bscroll.on('pullingUp', () => {
+      console.log(222222)
+      //发送网罗i请求，请求更多数据
+      // 等数据请求完成后，并且将新的数据展示出来后
+      setTimeout(() => {
+        bscroll.finishPullUp()
+        console.log(233333333)
+      }, 2000)
+
+    })
+  </script>
+</body>
+</html>
