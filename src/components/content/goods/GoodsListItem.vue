@@ -1,6 +1,6 @@
 <template>
   <div class="goodsItem" @click="goodsClick">
-    <img :src="goodsItem.show.img" alt='' @load="imgLoad" />
+    <img alt='' @load="imgLoad" v-lazy='showImage'/>
     <div class="goodsInfo">
       <p>{{goodsItem.title}}</p>
       <span class="price">{{goodsItem.price}}</span>
@@ -11,7 +11,7 @@
 
 <script>
 export default {
-  name: "goodsItem",
+  name: "goodsListItem",
   props: {
     goodsItem: {
       type: Object,
@@ -25,7 +25,11 @@ export default {
   },
   created() {},
   watch: {},
-  computed: {},
+  computed: {
+    showImage(){
+      return this.goodsItem.show.img || this.goodsItem.image
+    }
+  },
   mounted() {},
   methods: {
     imgLoad() {
@@ -33,7 +37,7 @@ export default {
       this.$bus.$emit("imgLoad");
     },
     goodsClick(){
-        console.warn(1111111)
+      this.$router.push('/detail/' + this.goodsItem.iid)
     }
   },
 };

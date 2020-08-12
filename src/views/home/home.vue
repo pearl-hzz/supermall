@@ -71,6 +71,7 @@ export default {
       isShow: false,
       tabOffsetTop: 0,
       isTabFixed: false,
+      saveY: 0,
     };
   },
   computed: {
@@ -91,6 +92,20 @@ export default {
       refresh();
     });
   },
+  destroyed() {
+    console.log("homexiohui");
+  },
+  activated() {
+    // console.log("activated");
+    this.$refs.scroll.scrollTo(0, this.saveY, 0);
+    // 可能滚动出问题，最好重新刷新
+    this.$refs.scroll.refresh();
+  },
+  deactivated() {
+    // console.log("deactivated");
+    this.saveY = this.$refs.scroll.getScrollY();
+    // console.warn(this.saveY);
+  },
   methods: {
     getDataList() {
       getDataList().then((res) => {
@@ -108,7 +123,7 @@ export default {
         this.$refs.scroll.finishPullUp();
       });
     },
-    tabClick(type,index) {
+    tabClick(type, index) {
       this.currentType = type;
       this.$refs.tabControl.currentIndex = index;
       this.$refs.tabControl1.currentIndex = index;

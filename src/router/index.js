@@ -36,7 +36,7 @@ const routes = [{
     meta: {
       title: '购物车'
     },
-    component: () => import( /* webpackChunkName: "about" */ '../views/shopCar/shopCar.vue')
+    component: () => import('../views/shopCar/shopCar.vue')
   },
   {
     path: '/my',
@@ -44,7 +44,15 @@ const routes = [{
     meta: {
       title: '个人中心'
     },
-    component: () => import( /* webpackChunkName: "about" */ '../views/myPersonal/person.vue')
+    component: () => import('../views/myPersonal/person.vue')
+  },
+  {
+    path: '/detail/:iid/',
+    name: 'detail',
+    meta: {
+      title: '详情页'
+    },
+    component: () => import('../views/detail/detail.vue')
   }
 ]
 
@@ -53,7 +61,7 @@ const router = new VueRouter({
   mode: 'history', //修改为h5得history模式，不设置就会使hash /#/
   base: process.env.BASE_URL,
   routes,
-  linkActiveClass: 'active' //修改理由的激活类名
+  linkActiveClass: 'active' //修改路由的激活类名
 })
 
 // 前置钩子  /（守卫）
