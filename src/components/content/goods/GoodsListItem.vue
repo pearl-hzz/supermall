@@ -27,7 +27,7 @@ export default {
   watch: {},
   computed: {
     showImage(){
-      return this.goodsItem.show.img || this.goodsItem.image
+      return this.goodsItem.image || this.goodsItem.show.img
     }
   },
   mounted() {},

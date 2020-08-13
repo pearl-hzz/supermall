@@ -38,8 +38,7 @@ import TabControl from "components/common/tabcontrol/TabControl";
 import Scroll from "components/common/scroll/Scroll";
 import BackTop from "components/content/backtop/BackTop";
 import GoodsList from "components/content/goods/GoodsList";
-import { debounce } from "common/utils";
-
+import {itemListenerMixmin} from "common/mixin";
 import { getDataList, getHomedata } from "network/home";
 export default {
   name: "home",
@@ -53,6 +52,7 @@ export default {
     Scroll,
     BackTop,
   },
+  mixins: [itemListenerMixmin],
   data() {
     return {
       banner: null,
@@ -85,25 +85,22 @@ export default {
     this.getHomeGoods("new");
     this.getHomeGoods("sell");
   },
-  mounted() {
-    const refresh = debounce(this.$refs.scroll.refresh, 200);
-    //监听图片加载
-    this.$bus.$on("imgLoad", () => {
-      refresh();
-    });
-  },
   destroyed() {
-    console.log("homexiohui");
+    // console.log("homexiohui");
   },
   activated() {
-    // console.log("activated");
+    // 如果安装了1.15.*版本的better-scroll，页面跳转记录位置再重置，会不起效果
+
+    // 进入的时候重新赋值
     this.$refs.scroll.scrollTo(0, this.saveY, 0);
     // 可能滚动出问题，最好重新刷新
     this.$refs.scroll.refresh();
   },
   deactivated() {
+    // 离开的时候记录位置
     // console.log("deactivated");
     this.saveY = this.$refs.scroll.getScrollY();
+    this.$bus.$off("imgLoad", this.itemListener)
     // console.warn(this.saveY);
   },
   methods: {

@@ -22,24 +22,8 @@ export default {
     },
     data() {
         return {
-
         };
     },
-    created() {
-
-    },
-    watch: {
-
-    },
-    computed: {
-
-    },
-    mounted() {
-
-    },
-    methods: {
-
-    }
 };
 </script>
 
