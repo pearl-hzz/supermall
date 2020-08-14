@@ -1,84 +1,67 @@
-@import './normalize.css';
-:root{
-    /* 获取根元素，下方定义了变量 */
+@import "./normalize.css";
+/*:root -> 获取根元素html*/
+:root {
+    /* --color-text 意思 是 定义变量 */
     --color-text: #666;
     --color-high-text: #ff5777;
-    --color-tint: #ff8189;
+    --color-tint: #ff8198;/* */
     --color-background: #fff;
     --font-size: 14px;
     --line-height: 1.5;
 }
+
 *,
 *::before,
-*::after{
+*::after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/*行内块元素*/
-input,img{
-    margin: 0;
-    padding: 0;
-    border: 0 none;
-    outline-style: none;
-    /* vertical-align: bottom;  */
+body {
+    font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
+    user-select: none; /* 禁止用户鼠标在页面上选中文字/图片等 */
+    -webkit-tap-highlight-color: transparent; /* webkit是苹果浏览器引擎，tap点击，highlight背景高亮，color颜色，颜色用数值调节 */
+    background: var(--color-background);
+    color: var(--color-text);
+    width: 100vw;
 }
 
-/*行内元素*/
-a,a:active,a:visited{
-    /*下划线和颜色*/
+a {
+    color: var(--color-text);
     text-decoration: none;
-    /* color: #ccc; */
-}
-
-textarea{
-    /* 边框清零 */
-    border:none;
-    /* 轮廓线清零 */
-    outline: none;
-    /* 防止文本域被随意拖拽 */
-    resize: none;
-}
-
-i{
-    /*文字样式*/
-    font-style: normal; 
-}
-
-table{
-    /*边框合并*/
-    border-collapse:collapse;
-    border-spacing:0;
 }
 
 
-/* 使用伪元素清除浮动 */
-.clearfix::before,
-.clearfix::after{
-    content:"";
-    height: 0;
-    line-height: 0;
-    display: block;
-    visibility: none;
+.clear-fix::after {
     clear: both;
+    content: '';
+    display: block;
+    width: 0;
+    height: 0;
+    visibility: hidden;
 }
 
-.clearfix {
-    *zoom: 1;
+.clear-fix {
+    zoom: 1;
 }
 
-
-/*可选*/
-/*单选框和复选框的配置，一般是分开的*/
-input[type="radio"],input[type="checkbox"]{
-    appearance: none;
-    -webkit-appearance: none;
-    outline: none;
-    display: none;
-}
-
-label{
+.arrow-right {
+    border-top: 1px solid #999;
+    border-left: 1px solid #999;
+    width: 9px;
+    height: 9px;
+    background-color: transparent;
+    transform: rotate(135deg);
     display: inline-block;
-    cursor: pointer;
+    margin-left: .1rem;
 }
+
+.left {
+    float: left;
+}
+
+.right {
+    float: right;
+}
+

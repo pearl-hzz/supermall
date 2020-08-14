@@ -41,12 +41,10 @@
     left: 0;
     right: 0;
     bottom: 0;
-
     display: flex;
     text-align: center;
     box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.3);
-    /*position: relative;*/
-    /*bottom: 49px;*/
+    z-index: 1000;
   }
 
   .bar-item {

@@ -36,10 +36,9 @@ import FeatureView from "./component/FeatureView";
 import NavBar from "components/common/navbar/NavBar";
 import TabControl from "components/common/tabcontrol/TabControl";
 import Scroll from "components/common/scroll/Scroll";
-import BackTop from "components/content/backtop/BackTop";
 import GoodsList from "components/content/goods/GoodsList";
-import {itemListenerMixmin} from "common/mixin";
 import { getDataList, getHomedata } from "network/home";
+import {itemListenerMixmin,backTopMixmin} from "common/mixin";
 export default {
   name: "home",
   components: {
@@ -50,9 +49,8 @@ export default {
     FeatureView,
     GoodsList,
     Scroll,
-    BackTop,
   },
-  mixins: [itemListenerMixmin],
+  mixins: [itemListenerMixmin,backTopMixmin],
   data() {
     return {
       banner: null,
@@ -68,7 +66,6 @@ export default {
         sell: { page: 0, list: [] },
       },
       currentType: "pop",
-      isShow: false,
       tabOffsetTop: 0,
       isTabFixed: false,
       saveY: 0,
@@ -124,9 +121,6 @@ export default {
       this.currentType = type;
       this.$refs.tabControl.currentIndex = index;
       this.$refs.tabControl1.currentIndex = index;
-    },
-    backTopClick() {
-      this.$refs.scroll.scrollTo(0, 0);
     },
     contentScroll(position) {
       // 判断到顶部是否显示

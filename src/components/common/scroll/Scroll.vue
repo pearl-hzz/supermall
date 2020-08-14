@@ -15,8 +15,6 @@ export default {
       type: Number,
       default: 0,
     },
-  },
-  props: {
     pullUpLoad: {
       type: Boolean,
       default: false,
