@@ -101,7 +101,7 @@
       //2、点击计算按钮
       calculateClick() {
         if(!this.isCheckAll) {
-           this.$toast.show('请选择默认的商品', 2000);
+           this.$toast.show('请选择商品！', 2000);
         }
       },
       //3、点击取消

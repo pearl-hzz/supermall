@@ -35,6 +35,7 @@ import {
   getRecommend,
 } from "network/detail";
 import { itemListenerMixmin, backTopMixmin} from "common/mixin";
+import {mapActions} from 'vuex'
 export default {
   name: "detail",
   mixins: [itemListenerMixmin,backTopMixmin],
@@ -113,6 +114,7 @@ export default {
     }, 100);
   },
   methods: {
+    ...mapActions(['addCart']),
     imageLoad() {
       // this.$refs.scroll.refresh();
       // 从混入中取得
@@ -158,7 +160,13 @@ export default {
         iid: this.iid,
         realPrice: this.goods.realPrice
       }
-      this.$store.dispatch('addCart', product)
+      // vuex中的actions方法映射
+      this.addCart(product).then(res => {
+        this.$toast.show('已加入购物车')
+      })
+      // this.$store.dispatch('addCart', product).then(res => {
+      //   console.log(res)
+      // })
     }
   },
   destroyed() {

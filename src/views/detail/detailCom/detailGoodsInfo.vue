@@ -11,7 +11,7 @@
         <img
           v-for="(item2, index) in item1.list"
           :key="index"
-          :src="item2"
+          v-lazy="item2"
           @load="imgLoad"
           alt
         />
